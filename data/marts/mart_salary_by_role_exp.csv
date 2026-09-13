@@ -1,0 +1,14 @@
+﻿role_category,seniority_level,job_count,salary_min_avg,salary_max_avg,salary_mean,salary_median
+AI / Machine Learning Engineer,Middle (3-5 năm),18,31.7,64.9,48.3,50.0
+Backend Developer,Fresher / Intern,16,20.8,37.7,29.2,34.5
+Backend Developer,Junior (1-2 năm),25,21.5,45.0,33.2,33.0
+Backend Developer,Middle (3-5 năm),21,28.5,54.6,41.5,35.0
+Backend Developer,Senior / Lead (>5 năm),17,33.6,59.6,46.6,45.0
+Data Analyst / BI,Middle (3-5 năm),21,23.2,46.1,34.6,33.5
+Data Engineer / Big Data,Middle (3-5 năm),21,29.4,58.6,44.0,45.0
+DevOps / Cloud Engineer,Middle (3-5 năm),18,26.6,50.6,38.6,37.5
+Frontend Developer,Middle (3-5 năm),60,25.2,51.7,38.5,36.2
+Mobile Developer,Middle (3-5 năm),1,15.0,25.0,20.0,20.0
+QA / QC / Automation Tester,Middle (3-5 năm),23,25.3,51.3,38.3,40.0
+Software Engineer (Chung),Fresher / Intern,26,16.7,24.6,20.6,21.0
+Software Engineer (Chung),Middle (3-5 năm),16,15.7,22.9,19.3,17.0

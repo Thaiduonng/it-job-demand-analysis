@@ -1,0 +1,16 @@
+﻿skill,sample_count,salary_avg,salary_median
+AI / Machine Learning,18,48.3,50.0
+Computer Vision,18,48.3,50.0
+MySQL,17,46.6,45.0
+Spring Boot,17,46.6,45.0
+Microservices,17,46.6,45.0
+Apache Kafka,38,45.2,45.0
+Hadoop / HDFS,21,44.0,45.0
+Apache Spark,21,44.0,45.0
+Airflow,21,44.0,45.0
+gRPC,20,42.0,36.2
+Golang,20,42.0,36.2
+AWS,39,41.5,37.5
+Docker,125,40.7,41.0
+Kubernetes,38,40.4,37.5
+Jira,78,40.1,39.8

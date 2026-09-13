@@ -1,0 +1,47 @@
+[
+  {
+    "role_category":"Backend Developer",
+    "job_count":105,
+    "percentage":24.71
+  },
+  {
+    "role_category":"Software Engineer (Chung)",
+    "job_count":98,
+    "percentage":23.06
+  },
+  {
+    "role_category":"Frontend Developer",
+    "job_count":81,
+    "percentage":19.06
+  },
+  {
+    "role_category":"DevOps \/ Cloud Engineer",
+    "job_count":30,
+    "percentage":7.06
+  },
+  {
+    "role_category":"Data Engineer \/ Big Data",
+    "job_count":28,
+    "percentage":6.59
+  },
+  {
+    "role_category":"QA \/ QC \/ Automation Tester",
+    "job_count":28,
+    "percentage":6.59
+  },
+  {
+    "role_category":"AI \/ Machine Learning Engineer",
+    "job_count":27,
+    "percentage":6.35
+  },
+  {
+    "role_category":"Data Analyst \/ BI",
+    "job_count":26,
+    "percentage":6.12
+  },
+  {
+    "role_category":"Mobile Developer",
+    "job_count":2,
+    "percentage":0.47
+  }
+]

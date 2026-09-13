@@ -1,0 +1,108 @@
+version: '3.8'
+
+services:
+  # ==========================================
+  # HADOOP HDFS (Distributed Storage Layer)
+  # ==========================================
+  namenode:
+    image: bde2020/hadoop-namenode:2.0.0-hadoop3.2.1-java8
+    container_name: hadoop-namenode
+    restart: always
+    ports:
+      - "9870:9870"   # NameNode Web UI
+      - "9000:9000"   # HDFS RPC Port
+    environment:
+      - CLUSTER_NAME=bigdata_recruitment_cluster
+    env_file:
+      - ./hadoop.env
+    volumes:
+      - hadoop_namenode:/hadoop/dfs/name
+    networks:
+      - bigdata-net
+
+  datanode:
+    image: bde2020/hadoop-datanode:2.0.0-hadoop3.2.1-java8
+    container_name: hadoop-datanode
+    restart: always
+    ports:
+      - "9864:9864"   # DataNode Web UI
+    environment:
+      SERVICE_PRECONDITION: "namenode:9870"
+    env_file:
+      - ./hadoop.env
+    volumes:
+      - hadoop_datanode:/hadoop/dfs/data
+    depends_on:
+      - namenode
+    networks:
+      - bigdata-net
+
+  # ==========================================
+  # APACHE SPARK (Distributed Computation)
+  # ==========================================
+  spark-master:
+    image: bitnami/spark:3.5.0
+    container_name: spark-master
+    restart: always
+    environment:
+      - SPARK_MODE=master
+      - SPARK_RPC_AUTHENTICATION_ENABLED=no
+      - SPARK_RPC_ENCRYPTION_ENABLED=no
+      - SPARK_LOCAL_STORAGE_ENCRYPTION_ENABLED=no
+      - SPARK_SSL_ENABLED=no
+    ports:
+      - "8080:8080"   # Spark Master Web UI
+      - "7077:7077"   # Spark Master RPC
+    volumes:
+      - ../spark:/opt/bitnami/spark/jobs
+      - ../data:/opt/bitnami/spark/data
+    networks:
+      - bigdata-net
+
+  spark-worker:
+    image: bitnami/spark:3.5.0
+    container_name: spark-worker
+    restart: always
+    environment:
+      - SPARK_MODE=worker
+      - SPARK_MASTER_URL=spark://spark-master:7077
+      - SPARK_WORKER_MEMORY=2G
+      - SPARK_WORKER_CORES=2
+      - SPARK_RPC_AUTHENTICATION_ENABLED=no
+    depends_on:
+      - spark-master
+    ports:
+      - "8081:8081"   # Spark Worker Web UI
+    volumes:
+      - ../spark:/opt/bitnami/spark/jobs
+      - ../data:/opt/bitnami/spark/data
+    networks:
+      - bigdata-net
+
+  # ==========================================
+  # APACHE NIFI (Dataflow & Orchestration)
+  # ==========================================
+  nifi:
+    image: apache/nifi:1.24.0
+    container_name: apache-nifi
+    restart: always
+    ports:
+      - "8443:8443"   # NiFi Web UI (HTTPS)
+    environment:
+      - NIFI_WEB_HTTPS_PORT=8443
+      - SINGLE_USER_CREDENTIALS_USERNAME=admin
+      - SINGLE_USER_CREDENTIALS_PASSWORD=BigData2026Password!
+    volumes:
+      - ../nifi/flows:/opt/nifi/nifi-current/conf_templates
+      - ../data:/opt/nifi/nifi-current/data
+      - ../crawler:/opt/nifi/nifi-current/crawler
+    networks:
+      - bigdata-net
+
+volumes:
+  hadoop_namenode:
+  hadoop_datanode:
+
+networks:
+  bigdata-net:
+    driver: bridge
