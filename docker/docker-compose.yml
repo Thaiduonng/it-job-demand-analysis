@@ -1,5 +1,3 @@
-version: '3.8'
-
 services:
   # ==========================================
   # HADOOP HDFS (Distributed Storage Layer)
