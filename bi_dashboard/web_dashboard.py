@@ -201,42 +201,149 @@ def main():
         st.subheader("Phân Tích Mức Lương Theo Vị Trí & Cấp Bậc")
 
         salary_df = filtered_df.dropna(subset=["salary_avg"])
+        SENIORITY_ORDER = ["Fresher / Intern", "Junior (1-2 năm)", "Middle (3-5 năm)", "Senior / Lead (>5 năm)"]
+
         if not salary_df.empty:
-            c1, c2 = st.columns([1, 1])
+            # Tóm tắt các chỉ số nổi bật
+            s_avg = round(salary_df["salary_avg"].mean(), 1)
+            s_min = round(salary_df["salary_min"].dropna().mean(), 1) if not salary_df["salary_min"].dropna().empty else 0.0
+            s_max = round(salary_df["salary_max"].dropna().mean(), 1) if not salary_df["salary_max"].dropna().empty else 0.0
+
+            m1, m2, m3, m4 = st.columns(4)
+            m1.metric("Lương TB Toàn Ngành", f"{s_avg} tr VNĐ")
+            m2.metric("Lương Min Trung Bình", f"{s_min} tr VNĐ")
+            m3.metric("Lương Max Trung Bình", f"{s_max} tr VNĐ")
+            m4.metric("Số Vị Trí Phân Tích", f"{salary_df['role_category'].nunique()} nhóm vai trò")
+
+            st.markdown("---")
+
+            c1, c2 = st.columns([1.1, 0.9])
             with c1:
-                st.markdown("#### Dải Lương Theo Cấp Bậc Kinh Nghiệm (Triệu VNĐ)")
-                fig_box = px.box(
-                    salary_df, x="seniority_level", y="salary_avg",
-                    color="seniority_level",
-                    labels={"seniority_level": "Cấp bậc", "salary_avg": "Mức lương (Triệu VNĐ)"}
+                st.markdown("#### 1. Dải Lương Theo Cấp Bậc Kinh Nghiệm")
+                view_mode = st.radio(
+                    "Chế độ hiển thị dải lương:",
+                    ["Cột Nhóm (Min - TB - Max) — Trực quan, dễ xem", "Biểu Đồ Hộp (Box Plot) — Phân tán thống kê"],
+                    horizontal=True,
+                    label_visibility="collapsed"
                 )
-                fig_box.update_layout(showlegend=False, margin=dict(t=30, b=0, l=0, r=0))
-                st.plotly_chart(fig_box, use_container_width=True)
+
+                if "Cột Nhóm" in view_mode:
+                    sen_agg = salary_df.groupby("seniority_level").agg(
+                        luong_min=("salary_min", "mean"),
+                        luong_avg=("salary_avg", "mean"),
+                        luong_max=("salary_max", "mean")
+                    ).reindex(SENIORITY_ORDER).dropna(how="all").round(1).reset_index()
+
+                    melted = pd.melt(
+                        sen_agg,
+                        id_vars=["seniority_level"],
+                        value_vars=["luong_min", "luong_avg", "luong_max"],
+                        var_name="loai_luong",
+                        value_name="muc_luong"
+                    )
+                    mapping = {
+                        "luong_min": "Lương Tối Thiểu (Min)",
+                        "luong_avg": "Lương Trung Bình (Avg)",
+                        "luong_max": "Lương Tối Đa (Max)"
+                    }
+                    melted["loai_luong"] = melted["loai_luong"].map(mapping)
+
+                    fig_bar = px.bar(
+                        melted,
+                        x="seniority_level",
+                        y="muc_luong",
+                        color="loai_luong",
+                        barmode="group",
+                        text_auto=".1f",
+                        labels={"seniority_level": "Cấp bậc", "muc_luong": "Mức lương (Triệu VNĐ)", "loai_luong": "Chỉ số"},
+                        category_orders={"seniority_level": SENIORITY_ORDER},
+                        color_discrete_map={
+                            "Lương Tối Thiểu (Min)": "#93C5FD",
+                            "Lương Trung Bình (Avg)": "#2563EB",
+                            "Lương Tối Đa (Max)": "#1E3A8A"
+                        }
+                    )
+                    fig_bar.update_traces(textposition="outside", texttemplate="%{y:.1f} tr")
+                    fig_bar.update_layout(
+                        legend=dict(orientation="h", yanchor="bottom", y=1.02, xanchor="right", x=1),
+                        margin=dict(t=40, b=0, l=0, r=0),
+                        yaxis_title="Triệu VNĐ",
+                        xaxis_title=""
+                    )
+                    st.plotly_chart(fig_bar, use_container_width=True)
+                else:
+                    fig_box = px.box(
+                        salary_df,
+                        x="seniority_level",
+                        y="salary_avg",
+                        color="seniority_level",
+                        category_orders={"seniority_level": SENIORITY_ORDER},
+                        labels={"seniority_level": "Cấp bậc", "salary_avg": "Mức lương (Triệu VNĐ)"},
+                        color_discrete_sequence=["#93C5FD", "#60A5FA", "#2563EB", "#1E3A8A"]
+                    )
+                    fig_box.update_traces(boxmean=True)
+                    fig_box.update_layout(
+                        showlegend=False,
+                        margin=dict(t=40, b=0, l=0, r=0),
+                        xaxis_title=""
+                    )
+                    st.plotly_chart(fig_box, use_container_width=True)
 
             with c2:
-                st.markdown("#### Lương Trung Bình Theo Vai Trò Chuyên Môn")
+                st.markdown("#### 2. Lương Trung Bình Theo Vai Trò Chuyên Môn")
                 role_sal = salary_df.groupby("role_category")["salary_avg"].mean().round(1).reset_index()
                 role_sal = role_sal.sort_values(by="salary_avg", ascending=True)
                 fig_bar_sal = px.bar(
                     role_sal, x="salary_avg", y="role_category", orientation="h",
-                    color="salary_avg", color_continuous_scale="Viridis",
+                    color="salary_avg", color_continuous_scale="Blues",
+                    text="salary_avg",
                     labels={"salary_avg": "Lương TB (Triệu VNĐ)", "role_category": "Vị trí"}
                 )
-                fig_bar_sal.update_layout(margin=dict(t=30, b=0, l=0, r=0))
+                fig_bar_sal.update_traces(textposition="outside", texttemplate="%{x:.1f} tr")
+                fig_bar_sal.update_layout(
+                    margin=dict(t=40, b=0, l=0, r=0),
+                    xaxis_title="Triệu VNĐ",
+                    yaxis_title="",
+                    coloraxis_showscale=False
+                )
                 st.plotly_chart(fig_bar_sal, use_container_width=True)
 
             st.markdown("---")
-            st.markdown("#### Top Kỹ Năng Đem Lại Thu Nhập Cao Nhất Thị Trường")
+            st.markdown("#### 3. Ma Trận Nhiệt Mức Lương: Vị Trí Chuyên Môn × Cấp Bậc Kinh Nghiệm (Triệu VNĐ)")
+            st.caption("💡 Biểu đồ Heatmap 2 chiều kết nối trực quan giữa Vị trí IT và Cấp bậc kinh nghiệm, hiển thị cụ thể mức lương trung bình kỳ vọng.")
+
+            pivot = salary_df.pivot_table(index="role_category", columns="seniority_level", values="salary_avg", aggfunc="mean")
+            valid_cols = [c for c in SENIORITY_ORDER if c in pivot.columns]
+            pivot = pivot.reindex(columns=valid_cols).round(1)
+            text_matrix = pivot.map(lambda v: f"{v:.1f} tr" if pd.notnull(v) else "—")
+
+            fig_heat = px.imshow(
+                pivot,
+                color_continuous_scale="Blues",
+                aspect="auto",
+                labels=dict(x="Cấp bậc kinh nghiệm", y="Vị trí chuyên môn", color="Lương TB (Triệu VNĐ)")
+            )
+            fig_heat.update_traces(text=text_matrix, texttemplate="%{text}")
+            fig_heat.update_layout(margin=dict(t=20, b=10, l=0, r=0))
+            st.plotly_chart(fig_heat, use_container_width=True)
+
+            st.markdown("---")
+            st.markdown("#### 4. Top Kỹ Năng Đem Lại Thu Nhập Cao Nhất Thị Trường")
             mart_skills_sal = load_mart("skills_salary")
             if not mart_skills_sal.empty:
                 fig_high_pay = px.bar(
                     mart_skills_sal.head(12), x="skill", y="salary_avg",
-                    color="salary_avg", color_continuous_scale="Reds",
+                    color="salary_avg", color_continuous_scale="Teal",
                     text="salary_avg",
                     labels={"skill": "Công nghệ / Kỹ năng", "salary_avg": "Lương TB (Triệu VNĐ)"}
                 )
-                fig_high_pay.update_traces(textposition="outside")
-                fig_high_pay.update_layout(margin=dict(t=30, b=0, l=0, r=0))
+                fig_high_pay.update_traces(textposition="outside", texttemplate="%{y:.1f} tr")
+                fig_high_pay.update_layout(
+                    margin=dict(t=30, b=0, l=0, r=0),
+                    yaxis_title="Triệu VNĐ",
+                    xaxis_title="",
+                    coloraxis_showscale=False
+                )
                 st.plotly_chart(fig_high_pay, use_container_width=True)
         else:
             st.info("Chưa có đủ số liệu lương để phân tích cho bộ lọc này.")
