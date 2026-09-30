@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<template encoding-version="1.3">
+    <description>NiFi Ingestion Pipeline for Vietnam IT Recruitment Demand Analysis</description>
+    <groupId>e7300134-01a0-1000-3f92-ab4d2f920e89</groupId>
+    <name>Vietnam_IT_Recruitment_Pipeline</name>
+    <snippet>
+        <processGroups>
+            <id>b1000001-01a0-1000-0000-000000000001</id>
+            <name>IT_Recruitment_Ingestion_To_HDFS</name>
+            <position>
+                <x>350.0</x>
+                <y>150.0</y>
+            </position>
+            <comments>Automated Ingestion Pipeline: Python Crawler -> JSON FlowFiles -> Hadoop HDFS Raw Zone</comments>
+        </processGroups>
+        <processors>
+            <id>b1000002-01a0-1000-0000-000000000002</id>
+            <name>1. ExecuteProcess (Python Crawler)</name>
+            <position>
+                <x>350.0</x>
+                <y>120.0</y>
+            </position>
+            <config>
+                <bulletinLevel>WARN</bulletinLevel>
+                <comments>Kích hoạt Python Crawler thu thập tin tuyển dụng CNTT trực tiếp</comments>
+                <concurrentlySchedulableTaskCount>1</concurrentlySchedulableTaskCount>
+                <descriptors>
+                    <entry>
+                        <key>Command</key>
+                        <value>
+                            <name>Command</name>
+                        </value>
+                    </entry>
+                    <entry>
+                        <key>Command Arguments</key>
+                        <value>
+                            <name>Command Arguments</name>
+                        </value>
+                    </entry>
+                </descriptors>
+                <executionNode>ALL</executionNode>
+                <penaltyDuration>30 sec</penaltyDuration>
+                <properties>
+                    <entry>
+                        <key>Command</key>
+                        <value>python3</value>
+                    </entry>
+                    <entry>
+                        <key>Command Arguments</key>
+                        <value>/opt/nifi/nifi-current/crawler/run_crawler.py --pages 2 --records 100</value>
+                    </entry>
+                </properties>
+                <runDurationMillis>0</runDurationMillis>
+                <schedulingPeriod>0 0 12 * * ?</schedulingPeriod>
+                <schedulingStrategy>CRON_DRIVEN</schedulingStrategy>
+                <yieldDuration>1 sec</yieldDuration>
+            </config>
+            <type>org.apache.nifi.processors.standard.ExecuteProcess</type>
+        </processors>
+        <processors>
+            <id>b1000003-01a0-1000-0000-000000000003</id>
+            <name>2. PutHDFS (Store to Raw Zone)</name>
+            <position>
+                <x>350.0</x>
+                <y>350.0</y>
+            </position>
+            <config>
+                <bulletinLevel>WARN</bulletinLevel>
+                <comments>Lưu trữ FlowFile JSON vào Hadoop HDFS Raw Zone</comments>
+                <concurrentlySchedulableTaskCount>1</concurrentlySchedulableTaskCount>
+                <descriptors>
+                    <entry>
+                        <key>Directory</key>
+                        <value>
+                            <name>Directory</name>
+                        </value>
+                    </entry>
+                </descriptors>
+                <executionNode>ALL</executionNode>
+                <penaltyDuration>30 sec</penaltyDuration>
+                <properties>
+                    <entry>
+                        <key>Directory</key>
+                        <value>/data/raw/jobs/</value>
+                    </entry>
+                </properties>
+                <runDurationMillis>0</runDurationMillis>
+                <schedulingPeriod>0 sec</schedulingPeriod>
+                <schedulingStrategy>TIMER_DRIVEN</schedulingStrategy>
+                <yieldDuration>1 sec</yieldDuration>
+            </config>
+            <type>org.apache.nifi.processors.hadoop.PutHDFS</type>
+        </processors>
+    </snippet>
+</template>
