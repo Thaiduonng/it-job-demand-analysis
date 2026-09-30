@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <template encoding-version="1.3">
-    <description>Pipeline tu dong thu thap tin tuyen dung IT va nap vao Data Lake Hadoop HDFS</description>
+    <description>Working live Ingestion Pipeline with Python crawler and Hadoop HDFS Data Lake integration</description>
     <groupId>e7300134-01a0-1000-3f92-ab4d2f920e89</groupId>
-    <name>Vietnam_IT_Recruitment_Pipeline</name>
+    <name>Vietnam_IT_Recruitment_Live_Pipeline</name>
     <snippet>
         <connections>
             <id>52241fae-2096-330b-0000-000000000000</id>
@@ -33,7 +33,7 @@
             <parentGroupId>e99715f8-a429-3d90-0000-000000000000</parentGroupId>
             <position>
                 <x>0.0</x>
-                <y>270.0</y>
+                <y>424.0</y>
             </position>
             <bundle>
                 <artifact>nifi-hadoop-nar</artifact>
@@ -170,6 +170,7 @@
                 <properties>
                     <entry>
                         <key>Hadoop Configuration Resources</key>
+                        <value>/opt/nifi/nifi-current/conf_templates/core-site.xml</value>
                     </entry>
                     <entry>
                         <key>kerberos-credentials-service</key>
@@ -199,7 +200,7 @@
                     </entry>
                     <entry>
                         <key>Conflict Resolution Strategy</key>
-                        <value>fail</value>
+                        <value>replace</value>
                     </entry>
                     <entry>
                         <key>writing-strategy</key>
@@ -250,7 +251,7 @@
                 <name>success</name>
                 <retry>false</retry>
             </relationships>
-            <state>STOPPED</state>
+            <state>RUNNING</state>
             <style/>
             <type>org.apache.nifi.processors.hadoop.PutHDFS</type>
         </processors>
@@ -326,7 +327,7 @@
                     </entry>
                     <entry>
                         <key>Command Arguments</key>
-                        <value>crawler/run_crawler.py --records 100</value>
+                        <value>/opt/nifi/nifi-current/crawler/run_crawler.py --pages 1 --records 20</value>
                     </entry>
                     <entry>
                         <key>Batch Duration</key>
@@ -359,10 +360,10 @@
                 <name>success</name>
                 <retry>false</retry>
             </relationships>
-            <state>STOPPED</state>
+            <state>RUNNING</state>
             <style/>
             <type>org.apache.nifi.processors.standard.ExecuteProcess</type>
         </processors>
     </snippet>
-    <timestamp>09/30/2026 09:42:24 UTC</timestamp>
+    <timestamp>09/30/2026 09:57:12 UTC</timestamp>
 </template>
