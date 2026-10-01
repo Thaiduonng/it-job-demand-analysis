@@ -1,102 +1,102 @@
 [
   {
-    "skill_name":"Docker",
-    "job_count":180,
-    "percentage":32.61
+    "skill_name":"Python",
+    "job_count":205,
+    "percentage":29.08
   },
   {
-    "skill_name":"Python",
-    "job_count":165,
-    "percentage":29.89
+    "skill_name":"Docker",
+    "job_count":194,
+    "percentage":27.52
   },
   {
     "skill_name":"Git",
-    "job_count":141,
-    "percentage":25.54
+    "job_count":149,
+    "percentage":21.13
   },
   {
     "skill_name":"Linux",
-    "job_count":126,
-    "percentage":22.83
-  },
-  {
-    "skill_name":"Redis",
-    "job_count":120,
-    "percentage":21.74
-  },
-  {
-    "skill_name":"RESTful API",
-    "job_count":116,
-    "percentage":21.01
-  },
-  {
-    "skill_name":"CI\/CD",
-    "job_count":113,
-    "percentage":20.47
+    "job_count":135,
+    "percentage":19.15
   },
   {
     "skill_name":"SQL",
-    "job_count":109,
-    "percentage":19.75
+    "job_count":129,
+    "percentage":18.3
   },
   {
     "skill_name":"Java",
-    "job_count":107,
-    "percentage":19.38
+    "job_count":128,
+    "percentage":18.16
+  },
+  {
+    "skill_name":"Redis",
+    "job_count":126,
+    "percentage":17.87
+  },
+  {
+    "skill_name":"RESTful API",
+    "job_count":120,
+    "percentage":17.02
+  },
+  {
+    "skill_name":"CI\/CD",
+    "job_count":118,
+    "percentage":16.74
   },
   {
     "skill_name":"Jira",
-    "job_count":102,
-    "percentage":18.48
-  },
-  {
-    "skill_name":"Apache Kafka",
-    "job_count":58,
-    "percentage":10.51
+    "job_count":110,
+    "percentage":15.6
   },
   {
     "skill_name":"AWS",
-    "job_count":57,
-    "percentage":10.33
-  },
-  {
-    "skill_name":"React",
-    "job_count":57,
-    "percentage":10.33
+    "job_count":64,
+    "percentage":9.08
   },
   {
     "skill_name":"Kubernetes",
-    "job_count":55,
-    "percentage":9.96
+    "job_count":63,
+    "percentage":8.94
   },
   {
     "skill_name":"PostgreSQL",
-    "job_count":54,
-    "percentage":9.78
+    "job_count":63,
+    "percentage":8.94
+  },
+  {
+    "skill_name":"React",
+    "job_count":63,
+    "percentage":8.94
+  },
+  {
+    "skill_name":"Apache Kafka",
+    "job_count":62,
+    "percentage":8.79
+  },
+  {
+    "skill_name":"AI \/ Machine Learning",
+    "job_count":43,
+    "percentage":6.1
   },
   {
     "skill_name":"TypeScript",
-    "job_count":32,
-    "percentage":5.8
+    "job_count":40,
+    "percentage":5.67
   },
   {
     "skill_name":"Spring Boot",
-    "job_count":32,
-    "percentage":5.8
+    "job_count":39,
+    "percentage":5.53
   },
   {
     "skill_name":"Golang",
-    "job_count":30,
-    "percentage":5.43
+    "job_count":38,
+    "percentage":5.39
   },
   {
-    "skill_name":"Angular",
-    "job_count":30,
-    "percentage":5.43
-  },
-  {
-    "skill_name":".NET Core",
-    "job_count":29,
+    "skill_name":"Computer Vision",
+    "job_count":37,
     "percentage":5.25
   }
 ]

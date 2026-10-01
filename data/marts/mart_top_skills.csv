@@ -1,21 +1,21 @@
 ﻿skill_name,job_count,percentage
-Docker,180,32.61
-Python,165,29.89
-Git,141,25.54
-Linux,126,22.83
-Redis,120,21.74
-RESTful API,116,21.01
-CI/CD,113,20.47
-SQL,109,19.75
-Java,107,19.38
-Jira,102,18.48
-Apache Kafka,58,10.51
-AWS,57,10.33
-React,57,10.33
-Kubernetes,55,9.96
-PostgreSQL,54,9.78
-TypeScript,32,5.8
-Spring Boot,32,5.8
-Golang,30,5.43
-Angular,30,5.43
-.NET Core,29,5.25
+Python,205,29.08
+Docker,194,27.52
+Git,149,21.13
+Linux,135,19.15
+SQL,129,18.3
+Java,128,18.16
+Redis,126,17.87
+RESTful API,120,17.02
+CI/CD,118,16.74
+Jira,110,15.6
+AWS,64,9.08
+Kubernetes,63,8.94
+PostgreSQL,63,8.94
+React,63,8.94
+Apache Kafka,62,8.79
+AI / Machine Learning,43,6.1
+TypeScript,40,5.67
+Spring Boot,39,5.53
+Golang,38,5.39
+Computer Vision,37,5.25

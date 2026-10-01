@@ -1,15 +1,15 @@
 [
   {
-    "skill":"AI \/ Machine Learning",
-    "sample_count":18,
-    "salary_avg":48.3,
+    "skill":"Computer Vision",
+    "sample_count":21,
+    "salary_avg":46.9,
     "salary_median":50.0
   },
   {
-    "skill":"Computer Vision",
+    "skill":"MySQL",
     "sample_count":18,
-    "salary_avg":48.3,
-    "salary_median":50.0
+    "salary_avg":46.5,
+    "salary_median":45.0
   },
   {
     "skill":"Microservices",
@@ -18,9 +18,15 @@
     "salary_median":45.0
   },
   {
-    "skill":"MySQL",
-    "sample_count":18,
-    "salary_avg":46.5,
+    "skill":"AI \/ Machine Learning",
+    "sample_count":22,
+    "salary_avg":46.3,
+    "salary_median":50.0
+  },
+  {
+    "skill":"Apache Kafka",
+    "sample_count":40,
+    "salary_avg":45.5,
     "salary_median":45.0
   },
   {
@@ -30,63 +36,57 @@
     "salary_median":45.0
   },
   {
-    "skill":"Apache Kafka",
-    "sample_count":39,
-    "salary_avg":45.2,
-    "salary_median":45.0
-  },
-  {
-    "skill":"Hadoop \/ HDFS",
-    "sample_count":21,
-    "salary_avg":44.0,
+    "skill":"Apache Spark",
+    "sample_count":22,
+    "salary_avg":44.7,
     "salary_median":45.0
   },
   {
     "skill":"Airflow",
-    "sample_count":21,
-    "salary_avg":44.0,
+    "sample_count":22,
+    "salary_avg":44.7,
     "salary_median":45.0
   },
   {
-    "skill":"Apache Spark",
-    "sample_count":21,
-    "salary_avg":44.0,
+    "skill":"Hadoop \/ HDFS",
+    "sample_count":22,
+    "salary_avg":44.7,
     "salary_median":45.0
-  },
-  {
-    "skill":"gRPC",
-    "sample_count":20,
-    "salary_avg":42.0,
-    "salary_median":36.2
   },
   {
     "skill":"AWS",
-    "sample_count":40,
-    "salary_avg":41.4,
-    "salary_median":37.5
+    "sample_count":42,
+    "salary_avg":42.1,
+    "salary_median":39.8
   },
   {
-    "skill":"Docker",
-    "sample_count":128,
-    "salary_avg":40.6,
-    "salary_median":40.8
-  },
-  {
-    "skill":"Kubernetes",
-    "sample_count":39,
-    "salary_avg":40.3,
-    "salary_median":37.5
-  },
-  {
-    "skill":"Jira",
-    "sample_count":79,
-    "salary_avg":40.1,
-    "salary_median":40.0
-  },
-  {
-    "skill":"Golang",
-    "sample_count":22,
-    "salary_avg":39.9,
+    "skill":"gRPC",
+    "sample_count":21,
+    "salary_avg":41.7,
     "salary_median":35.0
+  },
+  {
+    "skill":"iOS",
+    "sample_count":23,
+    "salary_avg":40.6,
+    "salary_median":36.5
+  },
+  {
+    "skill":"Flutter",
+    "sample_count":23,
+    "salary_avg":40.6,
+    "salary_median":36.5
+  },
+  {
+    "skill":"Android",
+    "sample_count":23,
+    "salary_avg":40.6,
+    "salary_median":36.5
+  },
+  {
+    "skill":"Dart",
+    "sample_count":23,
+    "salary_avg":40.6,
+    "salary_median":36.5
   }
 ]

@@ -1,7 +1,11 @@
 """
 Bộ Điều Phối Thu Thập Dữ Liệu Tuyển Dụng IT Việt Nam (Crawler Orchestrator)
-Thực thi thu thập trực tiếp từ CareerViet, TopCV và làm giàu dữ liệu để đảm bảo
-quy mô Big Data cho đồ án.
+Thực thi thu thập trực tiếp từ 5 nguồn:
+  1. CareerViet.vn  – HTML scraping IT category
+  2. TopCV.vn       – HTML scraping IT category
+  3. ITviec.com     – HTML scraping job-card
+  4. Glints.com/vn  – JSON embedded in Next.js __NEXT_DATA__
+  5. VietnamWorks    – REST API
 """
 
 import os
@@ -25,6 +29,28 @@ sys.path.append(str(CURRENT_DIR.parent))
 from spiders.careerviet_crawler import CareerVietCrawler
 from spiders.topcv_crawler import TopCVCrawler
 from config import RAW_DATA_DIR, IT_KEYWORDS
+
+# Import 3 spider mới (optional – bắt lỗi nếu thiếu thư viện)
+try:
+    from spiders.itviec_crawler import ITviecCrawler
+    ITVIEC_AVAILABLE = True
+except ImportError as _e:
+    ITVIEC_AVAILABLE = False
+    print(f"[Warning] ITviec spider unavailable: {_e}")
+
+try:
+    from spiders.glints_crawler import GlintsVNCrawler
+    GLINTS_AVAILABLE = True
+except ImportError as _e:
+    GLINTS_AVAILABLE = False
+    print(f"[Warning] Glints spider unavailable: {_e}")
+
+try:
+    from spiders.vietnamworks_crawler import VietnamWorksCrawler
+    VW_AVAILABLE = True
+except ImportError as _e:
+    VW_AVAILABLE = False
+    print(f"[Warning] VietnamWorks spider unavailable: {_e}")
 
 # Danh mục công ty công nghệ thực tế tại Việt Nam để làm giàu dữ liệu quy mô lớn
 VIETNAM_IT_COMPANIES = [
@@ -94,40 +120,90 @@ def generate_augmented_records(count=150):
 
 def run_crawler(pages=3, enable_augmentation=True, target_records=250):
     """
-    Chạy thu thập dữ liệu đa nguồn và lưu trữ vào thư mục dữ liệu thô.
+    Chạy thu thập dữ liệu đa nguồn (5 nguồn) và lưu trữ vào thư mục dữ liệu thô.
+    Nguồn: CareerViet | TopCV | ITviec | Glints VN | VietnamWorks
     """
     print("=" * 60)
     print(f"[{datetime.now().strftime('%Y-%m-%d %H:%M:%S')}] BẮT ĐẦU CRAWL DỮ LIỆU TUYỂN DỤNG IT VIỆT NAM")
+    print("  Nguồn: CareerViet | TopCV | ITviec | Glints VN | VietnamWorks")
     print("=" * 60)
 
     all_jobs = []
+    source_stats = {}
 
     # 1. Thu thập từ CareerViet
     try:
         cv_crawler = CareerVietCrawler()
         cv_jobs = cv_crawler.crawl_multiple_pages(total_pages=pages)
-        print(f"[CareerViet] Cào thành công {len(cv_jobs)} tin.")
+        source_stats["CareerViet"] = len(cv_jobs)
+        print(f"[CareerViet] ✓ Cào thành công {len(cv_jobs)} tin.")
         all_jobs.extend(cv_jobs)
     except Exception as e:
-        print(f"[CareerViet] Lỗi: {e}")
+        print(f"[CareerViet] ✗ Lỗi: {e}")
+        source_stats["CareerViet"] = 0
 
     # 2. Thu thập từ TopCV
     try:
         topcv_crawler = TopCVCrawler()
         topcv_jobs = topcv_crawler.crawl_multiple_pages(total_pages=pages)
-        print(f"[TopCV] Cào thành công {len(topcv_jobs)} tin.")
+        source_stats["TopCV"] = len(topcv_jobs)
+        print(f"[TopCV] ✓ Cào thành công {len(topcv_jobs)} tin.")
         all_jobs.extend(topcv_jobs)
     except Exception as e:
-        print(f"[TopCV] Lỗi: {e}")
+        print(f"[TopCV] ✗ Lỗi: {e}")
+        source_stats["TopCV"] = 0
 
-    # 3. Làm giàu dữ liệu để đảm bảo khối lượng phục vụ Spark Big Data
+    # 3. Thu thập từ ITviec
+    if ITVIEC_AVAILABLE:
+        try:
+            itviec_crawler = ITviecCrawler()
+            itviec_jobs = itviec_crawler.crawl_multiple_pages(total_pages=pages)
+            source_stats["ITviec"] = len(itviec_jobs)
+            print(f"[ITviec] ✓ Cào thành công {len(itviec_jobs)} tin.")
+            all_jobs.extend(itviec_jobs)
+        except Exception as e:
+            print(f"[ITviec] ✗ Lỗi: {e}")
+            source_stats["ITviec"] = 0
+    else:
+        print("[ITviec] ⚠ Spider không khả dụng, bỏ qua.")
+
+    # 4. Thu thập từ Glints Vietnam
+    if GLINTS_AVAILABLE:
+        try:
+            glints_crawler = GlintsVNCrawler()
+            glints_jobs = glints_crawler.crawl_multiple_pages(total_pages=pages)
+            source_stats["Glints VN"] = len(glints_jobs)
+            print(f"[Glints VN] ✓ Cào thành công {len(glints_jobs)} tin.")
+            all_jobs.extend(glints_jobs)
+        except Exception as e:
+            print(f"[Glints VN] ✗ Lỗi: {e}")
+            source_stats["Glints VN"] = 0
+    else:
+        print("[Glints VN] ⚠ Spider không khả dụng, bỏ qua.")
+
+    # 5. Thu thập từ VietnamWorks
+    if VW_AVAILABLE:
+        try:
+            vw_crawler = VietnamWorksCrawler()
+            vw_jobs = vw_crawler.crawl_multiple_pages(total_pages=pages)
+            source_stats["VietnamWorks"] = len(vw_jobs)
+            print(f"[VietnamWorks] ✓ Cào thành công {len(vw_jobs)} tin.")
+            all_jobs.extend(vw_jobs)
+        except Exception as e:
+            print(f"[VietnamWorks] ✗ Lỗi: {e}")
+            source_stats["VietnamWorks"] = 0
+    else:
+        print("[VietnamWorks] ⚠ Spider không khả dụng, bỏ qua.")
+
+    # 6. Làm giàu dữ liệu nếu chưa đủ target
     if enable_augmentation and len(all_jobs) < target_records:
         needed = target_records - len(all_jobs)
         print(f"[Data Enrichment] Bổ sung {needed} bản ghi chuẩn thị trường CNTT Việt Nam...")
         augmented = generate_augmented_records(count=needed)
         all_jobs.extend(augmented)
+        source_stats["EnrichedMarketData"] = needed
 
-    # 4. Khử trùng lặp theo job_id
+    # 7. Khử trùng lặp theo job_id
     unique_jobs = {}
     for job in all_jobs:
         unique_jobs[job["job_id"]] = job
@@ -135,6 +211,9 @@ def run_crawler(pages=3, enable_augmentation=True, target_records=250):
 
     print("=" * 60)
     print(f"[Tổng kết Ingestion] Thu thập thành công {len(final_records)} bài đăng tuyển dụng IT.")
+    print("  Thống kê theo nguồn:")
+    for src, cnt in source_stats.items():
+        print(f"    • {src}: {cnt} tin")
     print("=" * 60)
 
     # 5. Lưu vào file JSON và JSONL trong Raw Zone

@@ -12,11 +12,13 @@ for d in [DATA_DIR, RAW_DATA_DIR, PROCESSED_DATA_DIR, MARTS_DATA_DIR]:
     os.makedirs(d, exist_ok=True)
 
 # Default headers to mimic real desktop browsers
+# NOTE: Do NOT include Accept-Encoding here.
+# If set manually, the 'requests' library won't auto-decompress gzip responses,
+# resulting in garbled binary HTML instead of readable text.
 DEFAULT_HEADERS = {
     "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/128.0.0.0 Safari/537.36",
     "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8",
     "Accept-Language": "vi-VN,vi;q=0.9,en-US;q=0.8,en;q=0.7",
-    "Accept-Encoding": "gzip, deflate, br",
     "Connection": "keep-alive",
     "Cache-Control": "max-age=0",
     "Upgrade-Insecure-Requests": "1"
