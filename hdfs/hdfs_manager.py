@@ -7,10 +7,16 @@ Hỗ trợ Dual-mode:
 """
 
 import os
+import sys
 import json
 import shutil
 from datetime import datetime
 from pathlib import Path
+
+# Cấu hình encoding UTF-8 cho console Windows
+if sys.platform == "win32":
+    sys.stdout.reconfigure(encoding="utf-8")
+    sys.stderr.reconfigure(encoding="utf-8")
 
 class HDFSManager:
     def __init__(self, base_data_dir=None, hdfs_host="localhost", hdfs_port=9870):
@@ -74,17 +80,19 @@ class HDFSManager:
     def _upload_to_webhdfs(self, local_path, hdfs_path):
         """Tải tệp lên HDFS thông qua WebHDFS REST API"""
         try:
-            import urllib.request
+            import requests
+            import re
             create_url = f"http://{self.hdfs_host}:{self.hdfs_port}/webhdfs/v1{hdfs_path}?op=CREATE&overwrite=true"
-            req = urllib.request.Request(create_url, method="PUT")
-            with urllib.request.urlopen(req) as resp:
-                redirect_url = resp.getheader("Location")
+            r = requests.put(create_url, allow_redirects=False, timeout=5)
+            if r.status_code == 307:
+                redirect_url = r.headers.get("Location")
                 if redirect_url:
+                    # Thay thế hostname/container ID của DataNode bằng localhost
+                    dest_url = re.sub(r"http://[^:]+:9864", f"http://{self.hdfs_host}:9864", redirect_url)
                     with open(local_path, "rb") as f:
-                        data = f.read()
-                    put_req = urllib.request.Request(redirect_url, data=data, method="PUT")
-                    with urllib.request.urlopen(put_req) as final_resp:
-                        print(f"[HDFS Cluster] Tải thành công lên {hdfs_path} (Status {final_resp.status})")
+                        final_r = requests.put(dest_url, data=f, timeout=15)
+                        if final_r.status_code in (200, 201):
+                            print(f"[HDFS Cluster] Tải thành công lên WebHDFS: {hdfs_path} (Status {final_r.status_code})")
         except Exception as e:
             print(f"[HDFS Cluster] Không thể upload WebHDFS: {e}. Đã lưu an toàn ở Local Lake.")
 
