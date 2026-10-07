@@ -1,52 +1,52 @@
 [
   {
     "role_category":"Software Engineer (Chung)",
-    "job_count":193,
-    "percentage":27.38
+    "job_count":268,
+    "percentage":30.04
   },
   {
     "role_category":"Backend Developer",
-    "job_count":186,
-    "percentage":26.38
+    "job_count":214,
+    "percentage":23.99
   },
   {
     "role_category":"Frontend Developer",
-    "job_count":99,
-    "percentage":14.04
-  },
-  {
-    "role_category":"AI \/ Machine Learning Engineer",
-    "job_count":40,
-    "percentage":5.67
+    "job_count":106,
+    "percentage":11.88
   },
   {
     "role_category":"DevOps \/ Cloud Engineer",
-    "job_count":39,
-    "percentage":5.53
+    "job_count":65,
+    "percentage":7.29
+  },
+  {
+    "role_category":"AI \/ Machine Learning Engineer",
+    "job_count":53,
+    "percentage":5.94
   },
   {
     "role_category":"QA \/ QC \/ Automation Tester",
-    "job_count":37,
-    "percentage":5.25
+    "job_count":52,
+    "percentage":5.83
   },
   {
     "role_category":"Data Engineer \/ Big Data",
-    "job_count":36,
-    "percentage":5.11
+    "job_count":47,
+    "percentage":5.27
   },
   {
     "role_category":"Data Analyst \/ BI",
-    "job_count":33,
-    "percentage":4.68
+    "job_count":35,
+    "percentage":3.92
   },
   {
     "role_category":"Fullstack Developer",
-    "job_count":24,
-    "percentage":3.4
+    "job_count":31,
+    "percentage":3.48
   },
   {
     "role_category":"Mobile Developer",
-    "job_count":18,
-    "percentage":2.55
+    "job_count":21,
+    "percentage":2.35
   }
 ]

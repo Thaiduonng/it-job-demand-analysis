@@ -1,20 +1,25 @@
 ﻿role_category,seniority_level,job_count,salary_min_avg,salary_max_avg,salary_mean,salary_median
-AI / Machine Learning Engineer,Middle (3-5 năm),21,30.6,63.2,46.9,50.0
-Backend Developer,Fresher / Intern,24,19.9,37.3,28.6,34.2
+AI / Machine Learning Engineer,Fresher / Intern,1,20.0,50.0,35.0,35.0
+AI / Machine Learning Engineer,Middle (3-5 năm),24,33.8,67.8,50.8,50.0
+Backend Developer,Fresher / Intern,26,19.9,38.1,29.0,34.2
 Backend Developer,Junior (1-2 năm),30,19.8,41.9,30.8,30.8
-Backend Developer,Middle (3-5 năm),35,26.6,48.7,37.7,35.0
+Backend Developer,Middle (3-5 năm),38,26.2,47.9,37.0,35.0
 Backend Developer,Senior / Lead (>5 năm),22,33.3,56.7,45.0,45.0
 Data Analyst / BI,Middle (3-5 năm),22,22.7,45.1,33.9,32.5
-Data Engineer / Big Data,Middle (3-5 năm),22,29.8,59.6,44.7,45.0
+Data Analyst / BI,Senior / Lead (>5 năm),2,43.6,62.2,52.9,52.9
+Data Engineer / Big Data,Middle (3-5 năm),23,29.4,59.2,44.3,45.0
+DevOps / Cloud Engineer,Junior (1-2 năm),2,18.5,25.0,21.8,21.8
 DevOps / Cloud Engineer,Middle (3-5 năm),19,26.5,50.6,38.5,37.5
 Frontend Developer,Fresher / Intern,3,9.3,14.8,12.0,15.5
-Frontend Developer,Middle (3-5 năm),67,25.2,51.1,38.2,35.5
+Frontend Developer,Middle (3-5 năm),68,25.2,50.7,37.9,35.2
+Frontend Developer,Senior / Lead (>5 năm),1,63.5,76.2,69.8,69.8
 Fullstack Developer,Junior (1-2 năm),2,32.4,48.1,40.2,40.2
-Fullstack Developer,Middle (3-5 năm),9,30.4,42.0,36.2,25.5
+Fullstack Developer,Middle (3-5 năm),10,28.9,40.9,34.9,25.5
 Mobile Developer,Fresher / Intern,1,8.0,12.0,10.0,10.0
 Mobile Developer,Middle (3-5 năm),8,18.6,27.6,23.1,23.5
-QA / QC / Automation Tester,Middle (3-5 năm),27,24.3,47.0,35.7,38.5
-Software Engineer (Chung),Fresher / Intern,31,16.3,25.3,20.8,21.0
-Software Engineer (Chung),Junior (1-2 năm),9,16.6,24.0,20.3,20.0
-Software Engineer (Chung),Middle (3-5 năm),36,16.7,25.9,21.3,19.5
-Software Engineer (Chung),Senior / Lead (>5 năm),3,39.4,63.8,51.6,50.8
+QA / QC / Automation Tester,Junior (1-2 năm),1,200.0,500.0,350.0,350.0
+QA / QC / Automation Tester,Middle (3-5 năm),32,22.4,42.2,32.3,34.0
+Software Engineer (Chung),Fresher / Intern,32,21.6,32.0,26.8,21.0
+Software Engineer (Chung),Junior (1-2 năm),14,21.7,30.7,26.2,18.6
+Software Engineer (Chung),Middle (3-5 năm),50,21.8,34.1,27.9,20.0
+Software Engineer (Chung),Senior / Lead (>5 năm),4,37.0,67.9,52.4,52.9

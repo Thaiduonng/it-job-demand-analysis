@@ -1,16 +1,16 @@
 ﻿skill,sample_count,salary_avg,salary_median
+Selenium,24,51.3,40.0
+AI / Machine Learning,26,49.6,50.0
 Computer Vision,21,46.9,50.0
 MySQL,18,46.5,45.0
 Microservices,18,46.5,45.0
-AI / Machine Learning,22,46.3,50.0
 Apache Kafka,40,45.5,45.0
-Spring Boot,19,45.4,45.0
-Apache Spark,22,44.7,45.0
+Apache Spark,23,45.0,45.0
 Airflow,22,44.7,45.0
 Hadoop / HDFS,22,44.7,45.0
+Spring Boot,22,44.1,45.0
 AWS,42,42.1,39.8
 gRPC,21,41.7,35.0
-iOS,23,40.6,36.5
+Linux,99,41.5,38.5
 Flutter,23,40.6,36.5
-Android,23,40.6,36.5
-Dart,23,40.6,36.5
+iOS,23,40.6,36.5

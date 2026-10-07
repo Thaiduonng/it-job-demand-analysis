@@ -1,20 +1,29 @@
 [
   {
     "role_category":"AI \/ Machine Learning Engineer",
+    "seniority_level":"Fresher \/ Intern",
+    "job_count":1,
+    "salary_min_avg":20.0,
+    "salary_max_avg":50.0,
+    "salary_mean":35.0,
+    "salary_median":35.0
+  },
+  {
+    "role_category":"AI \/ Machine Learning Engineer",
     "seniority_level":"Middle (3-5 năm)",
-    "job_count":21,
-    "salary_min_avg":30.6,
-    "salary_max_avg":63.2,
-    "salary_mean":46.9,
+    "job_count":24,
+    "salary_min_avg":33.8,
+    "salary_max_avg":67.8,
+    "salary_mean":50.8,
     "salary_median":50.0
   },
   {
     "role_category":"Backend Developer",
     "seniority_level":"Fresher \/ Intern",
-    "job_count":24,
+    "job_count":26,
     "salary_min_avg":19.9,
-    "salary_max_avg":37.3,
-    "salary_mean":28.6,
+    "salary_max_avg":38.1,
+    "salary_mean":29.0,
     "salary_median":34.2
   },
   {
@@ -29,10 +38,10 @@
   {
     "role_category":"Backend Developer",
     "seniority_level":"Middle (3-5 năm)",
-    "job_count":35,
-    "salary_min_avg":26.6,
-    "salary_max_avg":48.7,
-    "salary_mean":37.7,
+    "job_count":38,
+    "salary_min_avg":26.2,
+    "salary_max_avg":47.9,
+    "salary_mean":37.0,
     "salary_median":35.0
   },
   {
@@ -54,13 +63,31 @@
     "salary_median":32.5
   },
   {
+    "role_category":"Data Analyst \/ BI",
+    "seniority_level":"Senior \/ Lead (>5 năm)",
+    "job_count":2,
+    "salary_min_avg":43.6,
+    "salary_max_avg":62.2,
+    "salary_mean":52.9,
+    "salary_median":52.9
+  },
+  {
     "role_category":"Data Engineer \/ Big Data",
     "seniority_level":"Middle (3-5 năm)",
-    "job_count":22,
-    "salary_min_avg":29.8,
-    "salary_max_avg":59.6,
-    "salary_mean":44.7,
+    "job_count":23,
+    "salary_min_avg":29.4,
+    "salary_max_avg":59.2,
+    "salary_mean":44.3,
     "salary_median":45.0
+  },
+  {
+    "role_category":"DevOps \/ Cloud Engineer",
+    "seniority_level":"Junior (1-2 năm)",
+    "job_count":2,
+    "salary_min_avg":18.5,
+    "salary_max_avg":25.0,
+    "salary_mean":21.8,
+    "salary_median":21.8
   },
   {
     "role_category":"DevOps \/ Cloud Engineer",
@@ -83,11 +110,20 @@
   {
     "role_category":"Frontend Developer",
     "seniority_level":"Middle (3-5 năm)",
-    "job_count":67,
+    "job_count":68,
     "salary_min_avg":25.2,
-    "salary_max_avg":51.1,
-    "salary_mean":38.2,
-    "salary_median":35.5
+    "salary_max_avg":50.7,
+    "salary_mean":37.9,
+    "salary_median":35.2
+  },
+  {
+    "role_category":"Frontend Developer",
+    "seniority_level":"Senior \/ Lead (>5 năm)",
+    "job_count":1,
+    "salary_min_avg":63.5,
+    "salary_max_avg":76.2,
+    "salary_mean":69.8,
+    "salary_median":69.8
   },
   {
     "role_category":"Fullstack Developer",
@@ -101,10 +137,10 @@
   {
     "role_category":"Fullstack Developer",
     "seniority_level":"Middle (3-5 năm)",
-    "job_count":9,
-    "salary_min_avg":30.4,
-    "salary_max_avg":42.0,
-    "salary_mean":36.2,
+    "job_count":10,
+    "salary_min_avg":28.9,
+    "salary_max_avg":40.9,
+    "salary_mean":34.9,
     "salary_median":25.5
   },
   {
@@ -127,47 +163,56 @@
   },
   {
     "role_category":"QA \/ QC \/ Automation Tester",
+    "seniority_level":"Junior (1-2 năm)",
+    "job_count":1,
+    "salary_min_avg":200.0,
+    "salary_max_avg":500.0,
+    "salary_mean":350.0,
+    "salary_median":350.0
+  },
+  {
+    "role_category":"QA \/ QC \/ Automation Tester",
     "seniority_level":"Middle (3-5 năm)",
-    "job_count":27,
-    "salary_min_avg":24.3,
-    "salary_max_avg":47.0,
-    "salary_mean":35.7,
-    "salary_median":38.5
+    "job_count":32,
+    "salary_min_avg":22.4,
+    "salary_max_avg":42.2,
+    "salary_mean":32.3,
+    "salary_median":34.0
   },
   {
     "role_category":"Software Engineer (Chung)",
     "seniority_level":"Fresher \/ Intern",
-    "job_count":31,
-    "salary_min_avg":16.3,
-    "salary_max_avg":25.3,
-    "salary_mean":20.8,
+    "job_count":32,
+    "salary_min_avg":21.6,
+    "salary_max_avg":32.0,
+    "salary_mean":26.8,
     "salary_median":21.0
   },
   {
     "role_category":"Software Engineer (Chung)",
     "seniority_level":"Junior (1-2 năm)",
-    "job_count":9,
-    "salary_min_avg":16.6,
-    "salary_max_avg":24.0,
-    "salary_mean":20.3,
-    "salary_median":20.0
+    "job_count":14,
+    "salary_min_avg":21.7,
+    "salary_max_avg":30.7,
+    "salary_mean":26.2,
+    "salary_median":18.6
   },
   {
     "role_category":"Software Engineer (Chung)",
     "seniority_level":"Middle (3-5 năm)",
-    "job_count":36,
-    "salary_min_avg":16.7,
-    "salary_max_avg":25.9,
-    "salary_mean":21.3,
-    "salary_median":19.5
+    "job_count":50,
+    "salary_min_avg":21.8,
+    "salary_max_avg":34.1,
+    "salary_mean":27.9,
+    "salary_median":20.0
   },
   {
     "role_category":"Software Engineer (Chung)",
     "seniority_level":"Senior \/ Lead (>5 năm)",
-    "job_count":3,
-    "salary_min_avg":39.4,
-    "salary_max_avg":63.8,
-    "salary_mean":51.6,
-    "salary_median":50.8
+    "job_count":4,
+    "salary_min_avg":37.0,
+    "salary_max_avg":67.9,
+    "salary_mean":52.4,
+    "salary_median":52.9
   }
 ]

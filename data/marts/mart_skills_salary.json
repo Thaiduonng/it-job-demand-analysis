@@ -1,5 +1,17 @@
 [
   {
+    "skill":"Selenium",
+    "sample_count":24,
+    "salary_avg":51.3,
+    "salary_median":40.0
+  },
+  {
+    "skill":"AI \/ Machine Learning",
+    "sample_count":26,
+    "salary_avg":49.6,
+    "salary_median":50.0
+  },
+  {
     "skill":"Computer Vision",
     "sample_count":21,
     "salary_avg":46.9,
@@ -18,27 +30,15 @@
     "salary_median":45.0
   },
   {
-    "skill":"AI \/ Machine Learning",
-    "sample_count":22,
-    "salary_avg":46.3,
-    "salary_median":50.0
-  },
-  {
     "skill":"Apache Kafka",
     "sample_count":40,
     "salary_avg":45.5,
     "salary_median":45.0
   },
   {
-    "skill":"Spring Boot",
-    "sample_count":19,
-    "salary_avg":45.4,
-    "salary_median":45.0
-  },
-  {
     "skill":"Apache Spark",
-    "sample_count":22,
-    "salary_avg":44.7,
+    "sample_count":23,
+    "salary_avg":45.0,
     "salary_median":45.0
   },
   {
@@ -54,6 +54,12 @@
     "salary_median":45.0
   },
   {
+    "skill":"Spring Boot",
+    "sample_count":22,
+    "salary_avg":44.1,
+    "salary_median":45.0
+  },
+  {
     "skill":"AWS",
     "sample_count":42,
     "salary_avg":42.1,
@@ -66,10 +72,10 @@
     "salary_median":35.0
   },
   {
-    "skill":"iOS",
-    "sample_count":23,
-    "salary_avg":40.6,
-    "salary_median":36.5
+    "skill":"Linux",
+    "sample_count":99,
+    "salary_avg":41.5,
+    "salary_median":38.5
   },
   {
     "skill":"Flutter",
@@ -78,13 +84,7 @@
     "salary_median":36.5
   },
   {
-    "skill":"Android",
-    "sample_count":23,
-    "salary_avg":40.6,
-    "salary_median":36.5
-  },
-  {
-    "skill":"Dart",
+    "skill":"iOS",
     "sample_count":23,
     "salary_avg":40.6,
     "salary_median":36.5

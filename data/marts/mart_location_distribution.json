@@ -1,27 +1,27 @@
 [
   {
     "location":"Hà Nội",
-    "job_count":293,
-    "percentage":41.56
+    "job_count":426,
+    "percentage":47.76
   },
   {
     "location":"Hồ Chí Minh",
-    "job_count":193,
-    "percentage":27.38
+    "job_count":234,
+    "percentage":26.23
   },
   {
     "location":"Đà Nẵng",
-    "job_count":88,
-    "percentage":12.48
+    "job_count":89,
+    "percentage":9.98
   },
   {
     "location":"Remote \/ Toàn quốc",
-    "job_count":75,
-    "percentage":10.64
+    "job_count":76,
+    "percentage":8.52
   },
   {
     "location":"Tỉnh thành khác",
-    "job_count":56,
-    "percentage":7.94
+    "job_count":67,
+    "percentage":7.51
   }
 ]
